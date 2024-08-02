@@ -19,5 +19,24 @@ const Section = sequelize.define('Section', {
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: DataTypes.NOW,
-    }
-}) 
+    },
+    MODIFY_DATE: {
+        type: DataTypes.DATE,
+        allowNull: true,
+    },
+    USECOUNTS: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        defaultValue: 0,
+    },
+    ACTIVE: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+    },
+}, {
+   tableName: 'sections',
+   timestamps: false,
+}); 
+
+module.exports = Section;
