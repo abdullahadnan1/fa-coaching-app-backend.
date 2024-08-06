@@ -119,11 +119,30 @@ const getClassByCode = async (req, res) => {
   }
 };
 
+const getClassDescByCode = async (req, res) => {
+  try{
+    const { code } = req.params;
+
+    const classEntry = await Class.findOne({ attributes: ['CDESC'], where: { CCODE: code } });
+
+    if(!classEntry){
+      return res.status(404).json({ message: 'Class not found'});
+    }
+
+    return res.status(200).json(classEntry);
+
+  } catch (error) {
+    console.error('Error fetching Class Description:', error);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
 module.exports = {
   createClass,
   deleteClass,
   updateClass,
   getAllClasses,
   getClassById,
-  getClassByCode
+  getClassByCode,
+  getClassDescByCode
 };
