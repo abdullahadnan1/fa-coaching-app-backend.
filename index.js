@@ -1,16 +1,15 @@
 const express = require('express');
 const app = express();
-const classRoutes = require('./routes/classRoutes');
-const sectionRoutes = require('./routes/sectionRoutes');
-const subjectRoutes = require('./routes/subjectRoutes');
+const Routes = require('./routes');
+
 
 // Middleware to parse JSON data
 app.use(express.json());
 
 // Use the class routes
-app.use('/api', classRoutes);
-app.use('/api', sectionRoutes);
-app.use('/api', subjectRoutes);
+app.use('/api/class', Routes.classRoutes);
+app.use('/api/section', Routes.sectionRoutes);
+app.use('/api/subject', Routes.subjectRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3001;
