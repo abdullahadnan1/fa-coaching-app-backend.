@@ -12,11 +12,12 @@ const createYear = async (req, res) => {
       MODIFY_DATE,
     } = req.body;
 
+    const date = new Date();
     const newYear = await Year.create({
       YCODE,
       YEARS,
       REMARKS,
-      CREATE_DATE: CREATE_DATE || new Date(),
+      CREATE_DATE: CREATE_DATE || date,
       MODIFY_DATE,
       USECOUNTS,
       ACTIVE,
@@ -42,14 +43,14 @@ const updateYear = async (req, res) => {
     if (!year) {
       return res.status(404).json({ message: "Year not found" });
     }
-
+    const date = new Date();
     // Update the year entry with new data
     year.YCODE = YCODE || year.YCODE;
     year.YEARS = YEARS || year.YEARS;
     year.REMARKS = REMARKS || year.REMARKS;
     year.USECOUNTS = USECOUNTS !== undefined ? USECOUNTS : year.USECOUNTS;
     year.ACTIVE = ACTIVE !== undefined ? ACTIVE : year.ACTIVE;
-    year.MODIFY_DATE = MODIFY_DATE || new Date();
+    year.MODIFY_DATE = MODIFY_DATE || date;
 
     await year.save();
     return res.status(200).json({
@@ -128,8 +129,8 @@ const getYearByCode = async (req, res) => {
       data: year,
     });
   } catch (error) {
-    console.error('Error Fetching year by code:', error);
-    return res.status(500).json({ message: 'Internal Server Error' });
+    console.error("Error Fetching year by code:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
