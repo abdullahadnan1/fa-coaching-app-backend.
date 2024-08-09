@@ -4,11 +4,11 @@ const { createClass, deleteClass, updateClass, getAllClasses, getClassById, getC
 
 
 // Define route for creating a class
-router.post('/classes', createClass);
-router.delete('/classes/:id', deleteClass);
-router.put('/classes/:id', updateClass);
-router.get('/classes', getAllClasses);
-router.get('/classes/:id', getClassById);
-router.get('/classes/code/:code', getClassByCode);
+router.post('/', createClass);
+router.delete('/:id', deleteClass);
+router.put('/:id', updateClass);
+router.get('/', getAllClasses);
+router.get('/:id', getClassById);
+router.get('/code/:code', getClassByCode);
 
 module.exports = router;
